@@ -1,7 +1,6 @@
 # vector-volume-discovery-pipeline
 
-The **Vector Volume Discovery Pipeline** is a scalable, multimodal retrieval system for discovering content in document images using vector embeddings. This system uses the **ColPali model**, which combines SigLIP image patch embeddings with a Gemma-2B language model, to generate **ColBERT-style multi-vector representations** of document pages. These vectors are stored and queried via a **Qdrant** vector database.
-
+The Vector Volume Discovery Pipeline is a multimodal retrieval system for searching document images using dense vector similarity. It encodes each page into ColBERT-style multi-vector embeddings and stores them in Qdrant for fast, semantic search. The system supports both image and text queries and routes top-K results through vision-language models for context-aware generation. This project also benchmarks four similarity functions - cosine, dot product, euclidean, and manhattan - to evaluate retrieval quality across real-world textbook queries.
 This repository includes code to host the models, generate embeddings, and run a backend FastAPI server for retrieval and generation tasks.
 
 ---
@@ -12,6 +11,7 @@ This repository includes code to host the models, generate embeddings, and run a
 - **llm_vision_models/** – Hosting scripts for LLaMA 3.2 Vision and Paligemma for response generation
 - **backend/** – FastAPI server that connects to all models and Qdrant for inference, search, and generation
 - **Colpali_Image_Embeddings_v1.ipynb** – Colab/Notebook version for testing embedding workflows
+- 
 
 ---
 
@@ -105,10 +105,6 @@ uvicorn main:app --host 0.0.0.0 --port 8080 --reload
 ### `POST /search`
 - Accepts a query vector or image  
 - Returns top-K most relevant document pages from Qdrant
-
-### `POST /generate`
-- Sends retrieved pages to LLaMA 3.2 Vision or Paligemma  
-- Returns generated answer based on retrieved context
 
 ---
 
