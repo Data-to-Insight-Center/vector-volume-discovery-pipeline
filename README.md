@@ -11,7 +11,7 @@ This repository includes code to host the models, generate embeddings, and run a
 - **llm_vision_models/** – Hosting scripts for LLaMA 3.2 Vision and Paligemma for response generation
 - **backend/** – FastAPI server that connects to all models and Qdrant for inference, search, and generation
 - **Colpali_Image_Embeddings_v1.ipynb** – Colab/Notebook version for testing embedding workflows
-- 
+- **evaluation_scores.ipynb** – Computes Precision@K, Recall@K, F1@K, AvgPrecision, and MRR for multiple similarity functions
 
 ---
 
@@ -76,13 +76,13 @@ The backend module powers inference workflows by connecting to the hosted models
 
 ```
 backend/
-├── api_router.py                # Central FastAPI router for model & Qdrant interaction
+├── api_router.py               # Central FastAPI router for model & Qdrant interaction
 ├── colpali_client.py           # API client to interact with hosted ColPali model
 ├── llama_client.py             # API client for LLaMA 3.2 Vision
 ├── paligemma_client.py         # API client for Paligemma model
 ├── qdrant_client.py            # Functions to upsert, search, and manage vectors in Qdrant
 ├── utils.py                    # Image preprocessing, base64 conversion, and helper functions
-└── main.py                     # FastAPI entrypoint for backend server
+└── app.py                      # FastAPI entrypoint for backend server
 ```
 
 ---
